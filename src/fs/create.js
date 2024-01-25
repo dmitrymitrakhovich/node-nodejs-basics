@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import fsp from 'node:fs/promises';
 import path from 'node:path';
 
 const __dirname = new URL('.', import.meta.url).pathname;
@@ -10,15 +11,15 @@ const create = async () => {
 
   const isFileExists = fs.existsSync(filePath);
 
-  if (isFileExists) {
-    throw new Error('FS operation failed');
-  }
-
-  fs.writeFile(filePath, fileContent, (error) => {
-    if (error) {
-      throw new Error(error);
+  try {
+    if (isFileExists) {
+      throw new Error('FS operation failed');
     }
-  });
+
+    await fsp.writeFile(filePath, fileContent);
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 await create();
