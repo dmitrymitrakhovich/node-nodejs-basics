@@ -2,16 +2,13 @@ import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import path from 'node:path';
 
-const __dirname = new URL('.', import.meta.url).pathname;
-
-const checkExistPath = (path) => fs.existsSync(path);
-
 const copy = async () => {
+  const __dirname = import.meta.dirname;
   const sourcePath = path.resolve(__dirname, 'files');
   const targetPath = path.resolve(__dirname, 'files_copy');
 
   try {
-    if (!checkExistPath(sourcePath) || checkExistPath(targetPath)) {
+    if (!fs.existsSync(sourcePath) || fs.existsSync(targetPath)) {
       throw new Error('FS operation failed');
     }
 
