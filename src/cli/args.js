@@ -4,7 +4,7 @@ const parseArgs = () => {
 
   args.forEach((item, index, arr) => {
     if (index % 2 === 0) {
-      result.push(`${item} is ${arr[index + 1]}`);
+      result.push(`${item.slice(2)} is ${arr[index + 1]}`);
     }
   });
 
