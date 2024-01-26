@@ -1,13 +1,23 @@
-import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import path from 'node:path';
+
+const checkExist = async (path) => {
+  try {
+    await fsp.access(path);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
 
 const list = async () => {
   const __dirname = import.meta.dirname;
   const dirPath = path.resolve(__dirname, 'files');
 
+  const isDirectoryExists = await checkExist(dirPath);
+
   try {
-    if (!fs.existsSync(dirPath)) {
+    if (!isDirectoryExists) {
       throw new Error('FS operation failed');
     }
 

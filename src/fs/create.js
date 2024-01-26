@@ -1,6 +1,14 @@
-import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import path from 'node:path';
+
+const checkExist = async (path) => {
+  try {
+    await fsp.access(path);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
 
 const create = async () => {
   const __dirname = import.meta.dirname;
@@ -9,7 +17,7 @@ const create = async () => {
   const fileContent = 'I am fresh and young';
 
   try {
-    if (fs.existsSync(filePath)) {
+    if (await checkExist(filePath)) {
       throw new Error('FS operation failed');
     }
 
