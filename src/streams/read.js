@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { pipeline } from 'stream/promises';
+import fs from 'node:fs';
+import path from 'node:path';
+import { pipeline } from 'node:stream/promises';
 
 const read = async () => {
   const __dirname = import.meta.dirname;
