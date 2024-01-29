@@ -1,6 +1,5 @@
 import os from 'node:os';
 import path from 'node:path';
-import { pipeline } from 'node:stream/promises';
 import { Worker, isMainThread } from 'node:worker_threads';
 
 const performCalculations = async () => {

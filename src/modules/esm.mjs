@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { release, type, version } from 'node:os';
+import { release, version } from 'node:os';
 import { createServer as createServerHttp } from 'http';
 
 import a from './files/a.json' assert { type: 'json' };
